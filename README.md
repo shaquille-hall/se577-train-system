@@ -18,7 +18,7 @@ Train Demo is a web application that simulates planning a trip and purchasing ti
 
 7. Run the project in IntelliJ, Eclipse, or on the command line with
     ```
-    mvn clean build
+    mvn clean package
     java -jar target/TrainDemo-0.0.1-SNAPSHOT.jar
     ```
 
