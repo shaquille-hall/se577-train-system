@@ -1,40 +1,73 @@
-# Shopizer Notes
+# Shopizer
 
-This is the only way I have been able to run Shopizer. I have also experimented with Maven, Eclipse, and IntelliJ.
+These are some brief instructions on how to get Shopizer running on your system. If you prefer a video format, also check [this](https://www.youtube.com/watch?v=SCiRreBUFNA) out. The video has some differences to this document but it still may be useful.
 
 ## Dependencies
 
- - Git
- - Java 8 (Not a later version!)
- - Tomcat 9
+You will need these on your system before running Shopizer.
 
-## Clone Repository
+### Java 8
+
+Ensure you have Java 8 installed and not a later version. Your `%JAVA_HOME%` and `%PATH%` environment variables should also be properly set.
+
+### Elasticsearch
+
+Elasticsearch is a flexible search engine used by Shopizer for search and caching. Install Elasticsearch with all default options by following these [instructions](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html). If you are on Windows, follow the `.zip` instructions not the `.msi` instructions.
+
+## Build
+
+1. Clone the repository
 
 ```
 git clone https://github.com/shopizer-ecommerce/shopizer
 git checkout origin/2.9.0
 ```
 
-## Build
+2. Build using Maven (this may take some time)
 
 ```
 cd <shopizer root>
 mvnw clean install
 ```
 
-Or on macOs or Linux:
-
-```
-cd <shopizer root>
-./mvnw clean install
-```
+On macOs or Linux, use `./mvnw` instead of just `mvnw`.
 
 ## Run
 
-1. Copy the `ROOT` directory in `sm-shop/target` to the `webapps` directory of your Tomcat installation.
+1. Ensure Elasticsearch is running
 
-2. Run startup.bat (or startup.sh on \*nix) in the `bin` directory of your Tomcat installation.
+```
+cd <elasticsearch install location>/bin
+elasticsearch.bat
+```
 
-3. Visit `localhost:8080` to view the storefront.
+On macOs or Linux, use `./elasticsearch` instead of the `.bat` file.
 
-4. Visit `localhost:8080/admin` with username `admin@shopizer.com` and password `password` to view the admin panel.
+2. Start Shopizer
+
+```
+cd <shopizer root>/sm-shop
+mvnw spring-boot:run
+```
+
+Once Shopizer is running, you can visit `localhost:8080` to view the storefront. You can also visit `localhost:8080/admin` with username `admin@shopizer.com` and password `password` to view the admin panel.
+
+If you ever need 
+
+## Debug
+
+To understand the internals of Shopizer, it may be helpful to step through the code using an IDE.
+
+### InteliJ
+
+*TODO*
+
+### Eclipse
+
+*TODO*
+
+## Other
+
+ - You may notice an interesting exception during the startup of Shopizer. To fix this, search for instances of "DETETE" (there should be three) and change them all to "DELETE".
+
+ - If you ever need to clear all persisted data, delete all `.db` files from inside `sm-shop`, and delete the `data` directory from inside your Elasticsearch install.
