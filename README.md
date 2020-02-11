@@ -16,15 +16,27 @@ Train Demo is a web application that simulates planning a trip and purchasing ti
 
 6. Update `src/main/resources/application.properties` with your Postgres password. Make sure not to commit changes to this file to source control.
 
-7. Run the project in IntelliJ, Eclipse, or on the command line with
+7. Add your GitHub `client-id` and `client-secret` to your `application.properites`. See the "Authentication" section.
+
+8. Run the project in IntelliJ, Eclipse, or on the command line with
     ```
     mvnw clean package
     java -jar target/TrainDemo-0.0.1-SNAPSHOT.jar
     ```
 
+9. Visit `localhost:8080` in a browser.
+
 ## Authentication
 
+Included already is authentication using GitHub or Google. For more info on how this works see [here](https://spring.io/guides/tutorials/spring-boot-oauth2/). You will have to add a new app to your GitHub account before you can run this application.
 
+> To use GitHub’s OAuth 2.0 authentication system for login, you must first [Add a new GitHub app](https://github.com/settings/developers).
+> 
+> Select "New OAuth App" and then the "Register a new OAuth application" page is presented. Enter an app name and description. Then, enter your app’s home page, which should be http://localhost:8080, in this case. Finally, indicate the Authorization callback URL as http://localhost:8080/login/oauth2/code/github and click Register Application.
+> 
+> The OAuth redirect URI is the path in the application that the end-user’s user-agent is redirected back to after they have authenticated with GitHub and have granted access to the application on the Authorize application page.
+ 
+Don't forget to set the `client-id` and `client-secret` in your `application.properites`. Do not commit these keys to source control. 
 
 ## Technology
 
