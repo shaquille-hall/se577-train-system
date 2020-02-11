@@ -1,5 +1,6 @@
 package edu.drexel.TrainDemo;
 
+import edu.drexel.TrainDemo.models.Route;
 import edu.drexel.TrainDemo.repositories.RouteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
@@ -56,15 +58,17 @@ public class TrainDemoApplication extends WebSecurityConfigurerAdapter {
 
     @Bean
     public CommandLineRunner demo(RouteRepository repo) {
+        // This is just a demonstration of Spring Repositories.
+        // Feel free to remove this.
         return (args) -> {
             log.info("Attempting to find routes with repo.findAll()...");
-            for (var route : repo.findAll()) {
+            for (Route route : repo.findAll()) {
                 log.info(route.toString());
             }
 
-            var id = 96L;
+            long id = 96L;
             log.info("Attempting to find route with id " + id + "...");
-            var entity = repo.findById(id);
+            Optional<Route> entity = repo.findById(id);
             if (entity.isPresent()) {
                 log.info("Found route with id " + id);
                 log.info(entity.get().toString());
@@ -72,10 +76,10 @@ public class TrainDemoApplication extends WebSecurityConfigurerAdapter {
                 log.info("Could not find route with id " + id);
             }
 
-            var agencyId = 51;
+            long agencyId = 51;
             log.info("Attempting to get all routes by the agency id " + agencyId + "...");
-            var routes = repo.findByAgency_Id(agencyId);
-            for (var route : routes) {
+            Iterable<Route> routes = repo.findByAgency_Id(agencyId);
+            for (Route route : routes) {
                 log.info(route.toString());
             }
         };

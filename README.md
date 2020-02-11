@@ -18,23 +18,29 @@ Train Demo is a web application that simulates planning a trip and purchasing ti
 
 7. Run the project in IntelliJ, Eclipse, or on the command line with
     ```
-    mvn clean package
+    mvnw clean package
     java -jar target/TrainDemo-0.0.1-SNAPSHOT.jar
     ```
+
+## Authentication
+
+
 
 ## Technology
 
 Below are most of the technologies used in this project. This project intentionally has much of the same tech stack as Shopizer.
 
-- Java 11 - Most people know Java already. Using Java has the added benefit of allowing us to analyze our project with depends and DV8.
+- Java - Most people know Java already. Using Java has the added benefit of allowing us to analyze our project with depends and DV8.
 
-- Spring Boot - Spring Boot is an incredibly popular and opinionated web framework for Java.
+- Spring Boot - Spring Boot is a popular and opinionated web framework for Java.
 
 - PostgreSQL - A robust, open-source relational database with excellent documentation.
 
 - Hibernate - A full Object Relational Mapper (ORM). This is what powers our Repository pattern. (However, this kind of abstraction is not without it's issues. See [here](https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch).)
 
 - Java Servlet Pages (JSP) - This provides server-side templating so our controllers can respond directly with HTML. This is the easiest way to get started. You are free to switch to a more modern templating system like Thymeleaf or switch entirely to a Single-Page Application like React or Angular for your frontend. Its up to you. But however you proceed, you will probably have to use JS at some point to make AJAX calls.
+
+- Twitter Bootstrap - The current HTML index.html is written using [Bootstrap](https://getbootstrap.com/docs/4.4/)'s styling. Bootstrap is an easy way to create a professional looking website.
 
 ## Vocab
 
@@ -101,7 +107,7 @@ These use cases outline what and how users will do on this website.
 ### User makes a reservation
 
 1. User enters their desired destination stop, source stop, and a departing date. User also specifies if they want one-way or round-trip tickets. If they want round-trip tickets, the system prompts the user to enter their date of return.
-2. System responds with a list of paths that satisfy the user's request. Each path includes all constituting details such as stops, trips, connections, dates, times and total path time. (You will have to do some tricky algorithmic work to find these paths. I suggest looking at something like [Raptor](https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/raptor_alenex.pdf) or something based on Dijkstra's.)
+2. System responds with a list of paths that satisfy the user's request. Each path includes all constituting details such as stops, trips, connections, dates, times and total path time. (You will have to implement some kind of algorithm to find these paths. However, this is not an Algorithms class so you will not be graded on this. As long as you can find some kind of path between two stops. But if you do want to try a proper solution, consider Dijkstra's or Microsoft's [Raptor](https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/raptor_alenex.pdf).)
 3. User selects their desired path along with the class of seat (coach, business, etc.) they want for each leg (trip) of their journey. If round-trip was selected, the user must select from a two lists of paths. One for each direction.
 4. User enters how many passengers of each type (adult, child, infant, etc.) and any relevant discounts (student, veteran, senior, etc.). User may also enter a discount code.
 5. User enters if they are checking any bicycles and if so how many.
@@ -125,16 +131,12 @@ These use cases outline what and how users will do on this website.
 
 1. User views past purchases.
 2. User chooses to cancel a selected reservation.
-3. System prompts user for a reason for their cancelation.
+3. System prompts user for a reason for their cancellation.
 4. User chooses from a list of prefilled reasons or enters their own.
 5. System saves their reason for cancelling.
 6. System attempts to refund money to user.
     1. If successful, system give a success message to the user and internally voids all tickets associated with the reservation.
     2. If unsuccessful, system provides an explanation to user.
-
-### User enters a support ticket
-
-TODO: We could include a ticketing subsystem with a customer service representative (CSR) actor.
 
 ## Integration
 
