@@ -3,7 +3,7 @@ services:
   postgres:
     image: postgres
     environment:
-      - POSTGRES_DB=TrainSystem
+      - POSTGRES_DB=TrainDemo
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
     ports:
