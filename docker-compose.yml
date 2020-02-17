@@ -5,6 +5,7 @@ services:
     depends_on:
       - traindb
     environment:
+      POSTGRES_DB: traindb
       POSTGRES_PASSWORD: password
     volumes:
       - ./TrainSystem:/app/
