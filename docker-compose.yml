@@ -9,6 +9,8 @@ services:
     volumes:
       - ./TrainSystem:/app/
       - ~/.m2:/root/.m2
+    ports:
+      - 8080:8080
   traindb:
     image: postgres
     environment:
