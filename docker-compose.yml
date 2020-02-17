@@ -1,5 +1,11 @@
 version: '3.3'
 services:
+  app:
+    build: TrainSystem
+    depends_on:
+      - traindb
+    environment:
+      POSTGRES_PASSWORD: password
   traindb:
     image: postgres
     environment:
