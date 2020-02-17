@@ -6,6 +6,8 @@ services:
       - traindb
     environment:
       POSTGRES_PASSWORD: password
+    volumes:
+      - ~/.m2:/root/.m2
   traindb:
     image: postgres
     environment:
