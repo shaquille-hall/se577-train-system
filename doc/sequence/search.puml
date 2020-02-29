@@ -1,0 +1,18 @@
+@startuml
+title Search Sequence
+autoactivate on
+actor "Browser" as client
+participant "Spring Boot Framework" as SBF
+
+client -> SBF : GET("/search/trip")
+
+SBF -> TripController : getTrips(SearchParameters)
+TripController -> TripModel : getTrips(SearchParameters)
+
+TripModel -> DB : getMatchingItineraries(SearchParameters)
+return List<Itinerary>
+return List<Itinerary>
+return List<Itinerary>
+
+return HTTP Response
+@enduml
