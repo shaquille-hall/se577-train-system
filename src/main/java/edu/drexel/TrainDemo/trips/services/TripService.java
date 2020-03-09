@@ -26,6 +26,7 @@ public class TripService {
     public List<Itinerary> getMatchingTrips(TripSearchRequest searchRequest) {
         String toId = searchRequest.getTo();
         String fromId = searchRequest.getFrom();
+        String date = searchRequest.getDate();
 
         StationEntity toStation = safeGetStationFromId(toId);
         StationEntity fromStation = safeGetStationFromId(fromId);
@@ -50,16 +51,18 @@ public class TripService {
             StopTimeEntity fromStopTimeEntity = trip.getStopByStationId(fromId);
             StopTimeEntity toStopTimeEntity = trip.getStopByStationId(toId);
 
-            resultList.add(
-                    new Itinerary(
-                            trip,
-                            fromStation,
-                            toStation,
-                            fromStopTimeEntity.getDepartureTime(),
-                            toStopTimeEntity.getArrivalTime()
-                    )
-            );
-
+            if (trip.isTripOnDate(date)) {
+                resultList.add(
+                        new Itinerary(
+                                trip,
+                                fromStation,
+                                toStation,
+                                fromStopTimeEntity.getDepartureTime(),
+                                toStopTimeEntity.getArrivalTime(),
+                                date
+                        )
+                );
+            }
         }
 
         return resultList;
