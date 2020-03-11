@@ -1,8 +1,5 @@
 package edu.drexel.TrainDemo.admin.controllers;
 
-//import edu.drexel.TrainDemo.user.models.User;
-//import edu.drexel.TrainDemo.user.repositories.UserRepository;
-//import edu.drexel.TrainDemo.user.services.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
