@@ -1,6 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:replace="base :: header"/>
+</head>
 <body>
+<th:block th:replace="base :: navbar"/>
 <p>Shopping Cart</p>
 <table>
     <tr>
@@ -24,6 +28,10 @@
         </tr>
     </th:block>
 </table>
-<button>Checkout</button>
+<a th:href="@{/checkout}" th:text="Checkout"/>
+
 </body>
+<footer>
+    <th:block th:replace="base :: footer"/>
+</footer>
 </html>

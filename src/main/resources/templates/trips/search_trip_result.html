@@ -1,6 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:replace="base :: header"/>
+</head>
 <body>
+<th:block th:replace="base :: navbar"/>
 <p>Search Result</p>
 <table>
     <tr>
@@ -20,13 +24,13 @@
             <td th:text="${itinerary.arrival}"></td>
 
             <td>
-                <!--/*@thymesVar id="cartItem" type="edu.drexel.TrainDemo.cart.models.CartItem"*/-->
-                <form th:action="@{/cart/add}"
-                      th:object="${cartItem}"
-                      method="post">
-                    <input hidden th:name="tripId" th:value="${itinerary.trip.id}"/>
-                    <input hidden th:name="fromId" th:value="${itinerary.from.id}"/>
-                    <input hidden th:name="toId" th:value="${itinerary.to.id}"/>
+                <!--/*@thymesVar id="SelectedItinerary" type="edu.drexel.TrainDemo.trips.models.Itinerary"*/-->
+                <form method="post"
+                      th:action="@{/cart/add}"
+                      th:object="${SelectedItinerary}">
+                    <input hidden th:name="trip.id" th:value="${itinerary.trip.id}"/>
+                    <input hidden th:name="from.id" th:value="${itinerary.from.id}"/>
+                    <input hidden th:name="to.id" th:value="${itinerary.to.id}"/>
                     <input hidden th:name="departure" th:value="${itinerary.departure}"/>
                     <input hidden th:name="arrival" th:value="${itinerary.arrival}"/>
                     <button type="submit">Add To Cart</button>
@@ -36,4 +40,7 @@
     </th:block>
 </table>
 </body>
+<footer>
+    <th:block th:replace="base :: footer"/>
+</footer>
 </html>
