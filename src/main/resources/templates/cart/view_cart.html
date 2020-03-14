@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:replace="base :: header"/>
+</head>
+<body>
+<th:block th:replace="base :: navbar"/>
+<p>Shopping Cart</p>
+<table>
+    <tr>
+        <th>TRIP ID</th>
+        <th>FROM station</th>
+        <th>DEPARTURE time</th>
+        <th>TO station</th>
+        <th>ARRIVAL time</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    <th:block th:each="itinerary : ${ShoppingCart.items}">
+        <tr>
+            <td th:text="${itinerary.trip.id}"></td>
+            <td th:text="${itinerary.from.name}"></td>
+            <td th:text="${itinerary.departure}"></td>
+            <td th:text="${itinerary.to.name}"></td>
+            <td th:text="${itinerary.arrival}"></td>
+            <td th:text="1"/>
+            <td th:text="FREE.99"/>
+        </tr>
+    </th:block>
+</table>
+<a th:href="@{/checkout}" th:text="Checkout"/>
+
+</body>
+<footer>
+    <th:block th:replace="base :: footer"/>
+</footer>
+</html>

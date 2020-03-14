@@ -27,6 +27,10 @@ public class TripEntity {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public List<StopTimeEntity> getStops() {
         return stops;
     }
@@ -39,7 +43,6 @@ public class TripEntity {
         }
         return null;
     }
-
 
     public boolean isTripOnDate(String date)
     {
@@ -66,5 +69,16 @@ public class TripEntity {
             default:
                 return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "TripEntity{" +
+                "id=" + id +
+                ", routeId=" + routeId +
+                ", calendarId=" + calendarId +
+                ", headsign='" + headsign + '\'' +
+                ", direction=" + direction +
+                '}';
     }
 }
