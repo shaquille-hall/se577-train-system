@@ -1,6 +1,7 @@
 package edu.drexel.TrainDemo.admin.controllers;
 
 import edu.drexel.TrainDemo.admin.models.PaymentModel;
+import edu.drexel.TrainDemo.admin.services.AdminService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
@@ -18,12 +19,19 @@ import java.io.*;
 @Controller
 public class AdminController {
 		private PaymentModel paymentModel;
+		private PaymentModel paymentForm;
+		private AdminService adminService;
 
 
     @GetMapping("/admin")
     public String getAdminPage(@AuthenticationPrincipal OAuth2User principal, Model model) {
         return "admin/admin_portal";
     }
+
+		@PostMapping("/paymentForm")
+		public String greetingSubmit(@ModelAttribute PaymentModel payment) {
+    	return "result";
+  }
 
 		@ModelAttribute
 		public void getUseCases(Model model) {
@@ -41,8 +49,15 @@ public class AdminController {
 		@ModelAttribute
 		public void getPayment(Model model) {
 			System.out.print("test print0");			
-			paymentModel = new PaymentModel("Paypal");				
+			paymentModel = new PaymentModel("Paypal 2");				
 			model.addAttribute("payment", paymentModel.getName());
+		}
+
+		@ModelAttribute
+		public void getPaymentForm(Model model) {
+			System.out.print("test print0");			
+			paymentForm = new PaymentModel("Paypal");				
+			model.addAttribute("paymentForm", paymentForm);
 		}
 
 		@ModelAttribute

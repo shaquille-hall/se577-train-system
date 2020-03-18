@@ -2,13 +2,17 @@ package edu.drexel.TrainDemo.admin.models;
 
 
 public class PaymentModel {
-    private String vendorName;
+    private String name;
 
     public PaymentModel(String name) {
-			vendorName = name;
+			this.name = name;
     }
 
     public String getName() {
-        return vendorName;
+        return name;
     }
+
+		public void setName(String name) {
+			this.name = name;
+		}			
 }
